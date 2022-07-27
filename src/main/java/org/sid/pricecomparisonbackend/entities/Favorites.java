@@ -1,4 +1,22 @@
 package org.sid.pricecomparisonbackend.entities;
 
-public class favorites {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Favorites {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
+
+  @OneToMany(mappedBy = "favorites",fetch = FetchType.LAZY)
+  private List<Product> favoriteOperations;
 }
