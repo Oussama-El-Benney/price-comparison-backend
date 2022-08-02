@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -12,6 +13,6 @@ import javax.persistence.ManyToOne;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class MagasinProduct extends Product{
   private double price;
-@ManyToOne
+@ManyToOne (fetch = FetchType.EAGER)
   private Magasin magasin;
 }
