@@ -35,7 +35,7 @@ public class PriceComparisonBackendApplication {
         Client customer = new Client();
         customer.setNature(PersonNature.CLIENT);
         customer.setName(name);
-        customer.setUsername(name + "-kun");
+        customer.setUsername(name + "_kun");
         customer.setEmail(name + "@gmail.com");
         personRepository.save(customer);
       });
