@@ -17,6 +17,9 @@ public class Favorites {
   private Long id;
   private String name;
 
+  @OneToOne
+  private Client client;
+
   @OneToMany(mappedBy = "favorites",fetch = FetchType.LAZY)
-  private List<Product> favoriteOperations;
+  private List<Product> favoriteProducts;
 }

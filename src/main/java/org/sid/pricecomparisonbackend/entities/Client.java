@@ -1,11 +1,10 @@
 package org.sid.pricecomparisonbackend.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @DiscriminatorValue("CLIENT")
 @Entity
@@ -13,4 +12,7 @@ import javax.persistence.Entity;
 public class Client extends Person{
   private int telNumber;
   private String adresse;
+
+  @OneToOne(mappedBy = "client")
+  private Favorites favorites;
 }
