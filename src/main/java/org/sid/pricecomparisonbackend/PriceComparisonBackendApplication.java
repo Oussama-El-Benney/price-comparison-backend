@@ -7,6 +7,8 @@ import org.sid.pricecomparisonbackend.repositories.MagasinProductRepository;
 import org.sid.pricecomparisonbackend.repositories.MagasinRepository;
 import org.sid.pricecomparisonbackend.repositories.PersonRepository;
 import org.sid.pricecomparisonbackend.repositories.ProductRepository;
+import org.sid.pricecomparisonbackend.services.PriceComparisonService;
+import org.sid.pricecomparisonbackend.services.PriceComparisonServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +27,25 @@ public class PriceComparisonBackendApplication {
     SpringApplication.run(PriceComparisonBackendApplication.class, args);
   }
 
+
   @Bean
+  CommandLineRunner start(PriceComparisonService priceComparisonService) {
+    return args -> {
+      Stream.of("Sirat", "Oussama", "Mohammed").forEach(name -> {
+        Client customer = new Client();
+        customer.setNature(PersonNature.CLIENT);
+        customer.setName(name);
+        customer.setUsername(name + "_kun");
+        customer.setEmail(name + "@gmail.com");
+        priceComparisonService.savePerson(customer, customer.getNature());
+      });
+//      priceComparisonService.magasinProductList().forEach(magasinProduct -> {
+//
+//      });
+    };
+  }
+
+  //  @Bean
   CommandLineRunner start(PersonRepository personRepository,
                           MagasinProductRepository magasinProductRepository,
                           ProductRepository productRepository,
@@ -72,7 +92,7 @@ public class PriceComparisonBackendApplication {
 
       personRepository.findByNature(PersonNature.CLIENT).forEach(client -> {
         log.info(client.getName());
-        if(Objects.equals(client.getName(), "Sirat")){
+        if (Objects.equals(client.getName(), "Sirat")) {
           client.setAdresse("bousalem");
         } else {
           client.setAdresse("maamoura");
