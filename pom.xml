@@ -15,6 +15,9 @@
     <description>price-comparison-backend</description>
     <properties>
         <java.version>11</java.version>
+<!--        <spring-security.version>5.3.4.RELEASE</spring-security.version>-->
+<!--        <spring.version>5.2.8.RELEASE</spring.version>-->
+
     </properties>
     <dependencies>
         <dependency>
@@ -24,6 +27,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.19.2</version>
         </dependency>
 
         <dependency>

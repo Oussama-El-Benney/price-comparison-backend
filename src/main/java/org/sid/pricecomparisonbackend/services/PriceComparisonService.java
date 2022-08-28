@@ -1,6 +1,7 @@
 package org.sid.pricecomparisonbackend.services;
 
 import org.sid.pricecomparisonbackend.dtos.MagasinProductDTO;
+import org.sid.pricecomparisonbackend.dtos.ProductDTO;
 import org.sid.pricecomparisonbackend.entities.MagasinProduct;
 import org.sid.pricecomparisonbackend.entities.Person;
 import org.sid.pricecomparisonbackend.entities.Product;
@@ -20,4 +21,8 @@ public interface PriceComparisonService {
   MagasinProductDTO getMagasinProductDTO(Long productId) throws MagasinProductNotFoundException;
 
   List<MagasinProductDTO> magasinProductList();
+
+  List<ProductDTO> searchProducts(String s);
+  List<ProductDTO> searchProductsById(Long id);
+
 }

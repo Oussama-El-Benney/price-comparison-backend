@@ -3,19 +3,20 @@ package org.sid.pricecomparisonbackend.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.sid.pricecomparisonbackend.dtos.MagasinProductDTO;
-import org.sid.pricecomparisonbackend.entities.Admin;
-import org.sid.pricecomparisonbackend.entities.Client;
-import org.sid.pricecomparisonbackend.entities.MagasinProduct;
-import org.sid.pricecomparisonbackend.entities.Person;
+import org.sid.pricecomparisonbackend.dtos.ProductDTO;
+import org.sid.pricecomparisonbackend.entities.*;
 import org.sid.pricecomparisonbackend.enums.PersonNature;
 import org.sid.pricecomparisonbackend.exceptions.MagasinProductNotFoundException;
 import org.sid.pricecomparisonbackend.mappers.MagasinProductMapperImpl;
+import org.sid.pricecomparisonbackend.mappers.ProductMapperImpl;
 import org.sid.pricecomparisonbackend.repositories.MagasinProductRepository;
 import org.sid.pricecomparisonbackend.repositories.PersonRepository;
+import org.sid.pricecomparisonbackend.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -25,7 +26,9 @@ import java.util.stream.Collectors;
 public class PriceComparisonServiceImpl implements PriceComparisonService {
   private PersonRepository personRepository;
   private MagasinProductRepository magasinProductRepository;
+  private ProductRepository productRepository;
   private MagasinProductMapperImpl magasinProductMapper;
+  private ProductMapperImpl productMapper;
 
   @Override
   public Person savePerson(Person person, PersonNature nature) {
@@ -75,5 +78,26 @@ public class PriceComparisonServiceImpl implements PriceComparisonService {
     return magasinProductDTOS;
   }
 
+  @Override
+  public List<ProductDTO> searchProducts(String keyword) {
+        List<Product> products=productRepository.searchProducts(keyword);
+//    List<Product> product=productRepository.findByNameContains(keyword);
+//
+////    List<MagasinProductDTO> MagasinProductDTOS = products.stream().map(prod -> magasinProductMapper.fromMagasinProduct(prod)).collect(Collectors.toList());
+    List<ProductDTO> ProductDTOS = products.stream().map(prod -> productMapper.fromProduct(prod)).collect(Collectors.toList());
+//
+    return ProductDTOS;
+//    return null;
+  }
 
+  public List<ProductDTO> searchProductsById(Long id) {
+//        List<Product> products=productRepository.findByNameContains(keyword);
+
+    Optional<Product> products=productRepository.findById(id);
+//    List<MagasinProductDTO> MagasinProductDTOS = products.stream().map(prod -> magasinProductMapper.fromMagasinProduct(prod)).collect(Collectors.toList());
+    List<ProductDTO> ProductDTOS = products.stream().map(prod -> productMapper.fromProduct(prod)).collect(Collectors.toList());
+
+    return ProductDTOS;
+//    return null;
+  }
 }

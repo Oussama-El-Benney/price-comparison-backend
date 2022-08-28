@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,6 @@ public class Favorites {
   @OneToOne
   private Client client;
 
-  @OneToMany(mappedBy = "favorites",fetch = FetchType.LAZY)
-  private List<Product> favoriteProducts;
+  @OneToMany(mappedBy = "favorites",fetch = FetchType.EAGER)
+  private List<Product> favoriteProducts=new ArrayList<>();
 }

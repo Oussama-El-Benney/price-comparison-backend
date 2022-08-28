@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person,Long> {
   public List<Client> findByNature(PersonNature n);
+  public Client findByName(String n);
 }

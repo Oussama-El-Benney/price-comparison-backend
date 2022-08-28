@@ -16,6 +16,7 @@ public class Magasin {
   private Long id;
   private String name;
   private String urlMagasin;
+
   @OneToMany(mappedBy = "magasin")
   private List<MagasinProduct> magasinProducts;
 }
