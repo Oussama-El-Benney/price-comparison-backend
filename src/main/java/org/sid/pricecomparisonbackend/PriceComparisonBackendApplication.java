@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.sid.pricecomparisonbackend.secrservice.entities.AppRole;
 import org.sid.pricecomparisonbackend.secrservice.entities.AppUser;
 import org.sid.pricecomparisonbackend.secrservice.service.AccountService;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -20,6 +21,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 @Slf4j
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
 @SpringBootApplication
 public class PriceComparisonBackendApplication {
 
@@ -50,9 +52,9 @@ public class PriceComparisonBackendApplication {
 //      accountService.addNewUser(new AppUser(10,"user4","123",new ArrayList<>()));
 //      accountService.addRoleToUser("user3","USER");
 //      accountService.addRoleToUser("user4","ADMIN");
-
-
-
+//      accountService.addRoleToUser("user36","CLIENT");
+//      accountService.addNewUser(new AppUser(0,"user40","123",new ArrayList<>()));
+//      accountService.addRoleToUser("user40","CLIENT");
       accountService.addNewUser(new AppUser(0, "user37", "123", new ArrayList<>()));
 
 
